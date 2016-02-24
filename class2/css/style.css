@@ -1,0 +1,35 @@
+p,
+h1,
+h2,
+h3,
+h4 {
+    font-family: sans-serif;
+    color: black;
+}
+
+img {
+    display: block;
+    height: 200px;
+    width: 200px;
+    opacity: 0.6;
+    filter: alpha(opacity=40);
+}
+
+#profile {
+    background-color: white;
+    color: white;
+    margin: 10px;
+    padding: 15px;
+    font-family: sans-serif;
+    border-radius: 10px;
+}
+
+#backgroundImage {
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+}
+
+#myNumber {
+    color: red;
+}
