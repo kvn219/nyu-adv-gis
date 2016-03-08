@@ -1,0 +1,13 @@
+body {
+    background-color: white;
+    color: gray;
+}
+
+.neighborhoods {
+    stroke: #fff;
+    fill:black;
+}
+
+.hover {
+    fill: gray;
+}
