@@ -1,0 +1,47 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "New York",
+        "chris_lived_here": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.98193359375,
+          40.78885994449482
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Baltimore",
+        "chris_lived_here": "true"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.607666015625,
+          39.30029918615032
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Washington",
+        "chris_lived_here": "false"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.080078125,
+          38.89958342598271
+        ]
+      }
+    }
+  ]
+}

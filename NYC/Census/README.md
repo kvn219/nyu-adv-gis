@@ -1,0 +1,1 @@
+Makefile modeled after the [U.S. Atlas project](https://github.com/mbostock/us-atlas).

@@ -3,7 +3,9 @@ var attribution = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenS
 //initialize map
 var nycSubwayMap = L.map( 'map', {
     scrollWheelZoom: false,
-    minZoom: 12,
+    center: [ 40.706864, -73.937817 ],
+    zoom: 11,
+    minZoom: 13,
 } );
 // CartoDB Basemap
 L.tileLayer( basemapUrl, {
@@ -15,15 +17,17 @@ L.tileLayer( basemapUrl, {
 //marker options
 var customMarker = {
     radius: 4,
-    fillColor: 'white',
+    fillColor: 'red',
     fillOpacity: 0.3,
     color: "red",
-    weight: 1.5,
+    weight: 1.25,
 };
 
 function onEachFeature( feature, layer ) {
     if ( feature.properties && feature.properties.name ) {
-        layer.bindPopup( feature.properties.name );
+        layer.bindPopup( feature.properties.name )
+            .stop()
+            .fadeIn( "fast" );
     }
 }
 
@@ -40,7 +44,9 @@ function onLocationFound( e ) {
         } )
         .addTo( nycSubwayMap )
         .bindPopup( "You must be " + radius + " meters from this point." )
-        .openPopup();
+        .openPopup()
+        .stop()
+        .fadeIn( "fast" );
     L.circle( e.latlng, radius + 50 )
         .addTo( nycSubwayMap );
 }

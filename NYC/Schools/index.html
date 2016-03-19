@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
+<link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+<style>
+
+#map {
+	background: whitesmoke;
+	position: absolute;
+	top: 20px;
+}
+h1 {
+	position: absolute;
+	left: 20px;
+	top: 10px;
+	font-family: "Proxima Nova", Montserrat, sans-serif;
+	font-size: 3.5em;
+	font-weight: 100;
+	color: black;
+}
+
+h2 {
+	left: 100px;
+	text-align: center;
+	width: 200px;
+	height: 100px;
+	background-color: black;
+	box-shadow: 5px 10px 5px #888888;
+}
+#number {
+	position: absolute;
+	font-family: "Proxima Nova", Montserrat, sans-serif;
+	top: 70px;
+	left: 125px;
+	font-size: 3.0em;
+	color: white;
+}
+.district {
+  stroke: #fff;
+  fill:black;
+}
+.hover {
+	fill: white;
+	stroke: black;
+}
+
+</style>
+<body>
+
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+
+<h1>NYC School District</h1>
+<div id="number"><h2></h2></div>
+<div id="map"></div>
+
+
+	<script>
+	var margin = {top: 10, right: 10, bottom: 10, left: 10};
+
+    var poverty;
+
+	var width = window.innerWidth + margin.left - margin.right,
+    height = window.innerHeight + margin.top - margin.bottom;
+
+
+	var svg = d3.select( "#map" )
+		  .append( "svg" )
+		  .attr( "width", width )
+		  .attr( "height", height );
+
+
+	var projection = d3.geo.conicEqualArea()
+		.scale(77423.06161113291)
+		.center([-73.92389357849065,40.69483904240502]) //projection center
+		.parallels([40.496133987610385,40.91553277650213]) //parallels for conic projection
+		.rotate([73.92389357849065]) //rotation for conic projection
+		.translate([-66755.26684646154,-29714.320463485623]) //translate to center the map in view
+
+	//Generate paths based on projection
+	var path = d3.geo.path()
+		.projection(projection);
+
+	queue()
+		.defer(d3.json, "nyc_school_districts.geojson")
+		.await(ready);
+
+
+	function ready(error, districts){
+        console.log(districts);
+		svg.append("g")
+			.selectAll("path")
+			.data(districts.features)
+			.enter()
+			.append("path")
+			.attr( "d", path )
+			.attr("class","district")
+			.on("mouseover", function(d){
+	            d3.select("h2").text(d.properties.district);
+	            d3.select(this).attr("class","district hover");})
+			.on("mouseout", function(d){
+            	d3.select("h2").text("");
+            	d3.select(this).attr("class","district")})
+			}
+
+	   $("svg").css({top: 100, left: 200, right: 200, position:'absolute'});
+
+</script>
+</body>
+</html>
