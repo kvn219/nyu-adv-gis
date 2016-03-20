@@ -14,7 +14,7 @@ L.tileLayer( basemapUrl, {
         detectRetina: true,
     } )
     .addTo( nycSubwayMap );
-//marker options
+// use custom marker options
 var customMarker = {
     radius: 4,
     fillColor: 'red',
@@ -22,15 +22,13 @@ var customMarker = {
     color: "red",
     weight: 1.25,
 };
-
+// add name to circles
 function onEachFeature( feature, layer ) {
     if ( feature.properties && feature.properties.name ) {
-        layer.bindPopup( feature.properties.name )
-            .stop()
-            .fadeIn( "fast" );
+        layer.bindPopup( feature.properties.name );
     }
 }
-
+// on page load, geolocate the user
 function onLocationFound( e ) {
     var radius = e.accuracy / 2;
     L.marker( e.latlng, {
@@ -44,17 +42,15 @@ function onLocationFound( e ) {
         } )
         .addTo( nycSubwayMap )
         .bindPopup( "You must be " + radius + " meters from this point." )
-        .openPopup()
-        .stop()
-        .fadeIn( "fast" );
+        .openPopup();
     L.circle( e.latlng, radius + 50 )
         .addTo( nycSubwayMap );
 }
-
+// throw error if geolocation cannot be loaded
 function onLocationError( e ) {
     alert( e.message );
 }
-//load data
+//load subway data
 $.getJSON( 'data/ny_subway_stations.geojson', function ( data ) {
     // add popup content
     L.geoJson( data, {

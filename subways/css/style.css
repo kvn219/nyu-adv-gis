@@ -3,7 +3,7 @@ body,
 #container {
     height: 100%;
     width: 100%;
-    background-color: black;
+    background-color: #000000;
     padding-top: 12px;
 }
 
@@ -15,8 +15,18 @@ body,
 }
 
 .navbar {
-    background: #2c2c50;
-    border: black;
+    background: #000000;
+    border: #000000;
+    color: red;
+}
+
+
+.navbar-default .navbar-brand {
+    color: white;
+}
+
+.navbar-default .navbar-nav>li>a{
+    color: white;
 }
 .fill {
     min-height: 100%;
