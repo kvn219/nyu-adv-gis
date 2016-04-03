@@ -150,7 +150,7 @@ function ready( error, ny, data ) {
                     '<td>' + formatPercent( HispanicTwoOrMoreRaces[ d.id ] ) + '</td>' + '</tr>' + '</table>'
                 );
             d3.select( this )
-                .style( "fill", "#377eb8" );
+                .style( "fill", "#6C7A89" );
         } )
         .on( "mouseout", function ( d, i ) {
             d3.select( "h2" )
@@ -266,5 +266,5 @@ $( "svg" )
         left: 300,
         right: 50,
         bottom: 30,
-        position: 'fixed'
+        position: 'absolute'
     } );
