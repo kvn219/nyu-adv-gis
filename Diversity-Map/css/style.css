@@ -35,7 +35,7 @@
 }
 
 #source{
-    padding: 10px;
+    /*padding: 10px;*/
     font-family: "Proxima Nova", Montserrat, sans-serif;
     font-size: 0.6em;
     color: #444444;
@@ -45,7 +45,7 @@ h1 {
     left: 30px;
     top: 10px;
     font-family: "Proxima Nova", Montserrat, sans-serif;
-    font-size: 2.0em;
+    font-size: 1.8em;
     font-weight: 500;
     color: #000;
     padding-left: 20px;

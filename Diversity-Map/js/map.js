@@ -105,7 +105,8 @@ function ready( error, ny, data ) {
         .on( "mouseover", function ( d, i ) {
             d3.select( "h2" )
                 .html(
-                    "<p id='text'>Over the past 30 years, an interesting phenomenon has taken shape in education systems in the United States: public schools have become increasingly racially segregated, despite rising levels of national diversity. While previous studies link greater diversity to better student performance, the focus remains largely on diversity in the classroom.  Yet a large educational and psychological body of literature suggests that relational diversity large -- the discrepancy of diversity experienced in one’s surroundings versus the classroom -- is an important factor in educational performance. Using the census data on diversity in the surrounding area.</p>" +
+                    "<p id='text'><b>Hover</b> over a tract to get infomation. <b>Click</b> a tract to zoom in, <b>click on the same</b> tract to zoom out. For best quality, use full screen.</p>" +
+                    "<p id='text'> Over the past 30 years, an interesting phenomenon has taken shape in education systems in the United States: public schools have become increasingly racially segregated, despite rising levels of national diversity. While previous studies link greater diversity to better student performance, the focus remains largely on diversity in the classroom. Yet a large educational and psychological body of literature suggests that relational diversity large.</p>" +
                     "<p id='sectionhead'>" + TractByName[ d.id ] + '</p>' +
                     "<p id='sectionhead2'>" + CountyName[ d.id ] + '</p>' +
                     "<p id='sectionhead2'>" + "Diversity Index: " + formatIndex( DiversityIndex[ d.id ] ) + "</p>" +
@@ -147,7 +148,10 @@ function ready( error, ny, data ) {
                     '<tr>' +
                     '<td>' + 'Two or More Races ' + '</td>' +
                     '<td>' + formatPercent( NonHispanicTwoOrMoreRaces[ d.id ] ) + '</td>' +
-                    '<td>' + formatPercent( HispanicTwoOrMoreRaces[ d.id ] ) + '</td>' + '</tr>' + '</table>'
+                    '<td>' + formatPercent( HispanicTwoOrMoreRaces[ d.id ] ) + '</td>' + '</tr>' + '</table>' +
+                    "<p id='text'>" + "<br/>" +
+                    "We believe the discrepancy of diversity experienced in one’s surroundings versus the classroom - is an important factor in educational performance. Using the census data on population origin by census tracts across New York State, this map visualizes diversity as measured with the <a href='https://en.wikipedia.org/wiki/Diversity_index'>Diversity Index</a> or better known as the Blau's Index. In sociology, psychology and management studies the index is often known as Blau's Index, as it was introduced into the literature by the sociologist Peter Blau." +
+                     "<div id='source'>" + "Source: American Community Survey 5-Year Data (09 - 13) </div> </p>"
                 );
             d3.select( this )
                 .style( "fill", "#6C7A89" );
@@ -155,7 +159,8 @@ function ready( error, ny, data ) {
         .on( "mouseout", function ( d, i ) {
             d3.select( "h2" )
                 .html(
-                    "<p id='text'>Over the past 30 years, an interesting phenomenon has taken shape in education systems in the United States: public schools have become increasingly racially segregated, despite rising levels of national diversity. While previous studies link greater diversity to better student performance, the focus remains largely on diversity in the classroom.  Yet a large educational and psychological body of literature suggests that relational diversity large -- the discrepancy of diversity experienced in one’s surroundings versus the classroom -- is an important factor in educational performance. Using the census data on diversity in the surrounding area.</p>" +
+                    "<p id='text'><b>Hover</b> over a tract to get infomation. <b>Click</b> a tract to zoom in, <b>click on the same</b> tract to zoom out. For best quality, use full screen.</p>"+
+                    "<p id='text'> Over the past 30 years, an interesting phenomenon has taken shape in education systems in the United States: public schools have become increasingly racially segregated, despite rising levels of national diversity. While previous studies link greater diversity to better student performance, the focus remains largely on diversity in the classroom. Yet a large educational and psychological body of literature suggests that relational diversity large.</p>" +
                     "<p id='sectionhead'>" + 'Census Tract' + '</p>' +
                     "<p id='sectionhead2'>" + 'County' + '</p>' +
                     "<p id='sectionhead2'>" + "Diversity Index: " + " " + "</p>" +
@@ -198,7 +203,10 @@ function ready( error, ny, data ) {
                     '<td>' + 'Two or More Races ' + '</td>' +
                     '<td>' + ' ' + '</td>' +
                     '<td>' + ' ' +
-                    '</td>' + '</tr>' + '</table>'
+                    '</td>' + '</tr>' + '</table>' +
+                    "<p id='text'>" + "<br/>" +
+                    "We believe the discrepancy of diversity experienced in one’s surroundings versus the classroom - is an important factor in educational performance. Using the census data on population origin by census tracts across New York State, this map visualizes diversity as measured with the <a href='https://en.wikipedia.org/wiki/Diversity_index'>Diversity Index</a> or better known as the Blau's Index. In sociology, psychology and management studies the index is often known as Blau's Index, as it was introduced into the literature by the sociologist Peter Blau." +
+                     "<div id='source'>" + "Source: American Community Survey 5-Year Data (09 - 13) </div> </p>"
                 );
             d3.select( "#tooltip" )
                 .remove();
