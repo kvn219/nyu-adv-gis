@@ -1,3 +1,11 @@
+// Resources used to make this visualization:
+// 1. http://bl.ocks.org/mbostock/8423351
+// 2. http://bl.ocks.org/dougdowson/10734337
+// 3. https://bost.ocks.org/mike/map/
+// 4. https://github.com/maptimelex/d3-mapping
+// 5. http://bl.ocks.org/mattparrilla/5724610
+// 6. Chris Wong's Advance GIS Mapping class
+
 // set margin for graph
 var margin = {
     top: 5,
@@ -9,7 +17,7 @@ var margin = {
 var width = window.innerWidth + margin.left - margin.right - 300,
     height = window.innerHeight + margin.top - margin.bottom,
     centered;
-// parser units
+// function to parse units
 var formatPercent = d3.format( ".2%" );
 var formatIndex = d3.format( ".2f" );
 // set color palette for chlorethpth map
@@ -19,18 +27,18 @@ var color = d3.scale.quantize()
 // path for map
 var path = d3.geo.path()
     .projection( null );
-// select and append to body
+// append svg to body
 var svg = d3.select( "body" )
     .append( "svg" )
     .attr( "width", width )
     .attr( "height", height );
-// append rectangle for zoom effect
+// append rectangle for zooming
 svg.append( "rect" )
     .attr( "class", "background" )
     .attr( "width", width )
     .attr( "height", height )
     .on( "click", clicked );
-// append
+// append data to rect
 var g = svg.append( "g" );
 // place data on a queue
 queue()
@@ -40,7 +48,7 @@ queue()
 // load data
 function ready( error, ny, data ) {
     if ( error ) throw error;
-    // create empty objects for data fields
+    // create empty objects for data
     var TractByID = {};
     var TractByName = {};
     var GeoID = {};
@@ -89,7 +97,7 @@ function ready( error, ny, data ) {
         .filter( function ( d ) {
             return ( d.id.slice( 5 ) / 10000 | 0 ) !== 99;
         } );
-
+    // append data to path and add color, transitions, & other special effects
     g.append( "g" )
         .attr( "id", "tracts" )
         .selectAll( "path" )
@@ -106,7 +114,7 @@ function ready( error, ny, data ) {
             d3.select( "h2" )
                 .html(
                     "<p id='text'><b>Hover</b> over a tract to get infomation. <b>Click</b> a tract to zoom in, <b>click on the same</b> tract to zoom out. For best quality, use full screen.</p>" +
-                    "<p id='text'> Over the past 30 years, an interesting phenomenon has taken shape in education systems in the United States: public schools have become increasingly racially segregated, despite rising levels of national diversity. While previous studies link greater diversity to better student performance, the focus remains largely on diversity in the classroom. Yet a large educational and psychological body of literature suggests that relational diversity large.</p>" +
+                    "<p id='text'> Over the past 30 years, an phenomenon has taken shape in education systems in the United States: public schools have become increasingly racially segregated, despite rising levels of national diversity. While previous studies link greater diversity to better student performance, the focus remains largely on diversity in the classroom.</p>" +
                     "<p id='sectionhead'>" + TractByName[ d.id ] + '</p>' +
                     "<p id='sectionhead2'>" + CountyName[ d.id ] + '</p>' +
                     "<p id='sectionhead2'>" + "Diversity Index: " + formatIndex( DiversityIndex[ d.id ] ) + "</p>" +
@@ -150,7 +158,7 @@ function ready( error, ny, data ) {
                     '<td>' + formatPercent( NonHispanicTwoOrMoreRaces[ d.id ] ) + '</td>' +
                     '<td>' + formatPercent( HispanicTwoOrMoreRaces[ d.id ] ) + '</td>' + '</tr>' + '</table>' +
                     "<p id='text'>" + "<br/>" +
-                    "We believe the discrepancy of diversity experienced in one’s surroundings versus the classroom - is an important factor in educational performance. Using the census data on population origin by census tracts across New York State, this map visualizes diversity as measured with the <a href='https://en.wikipedia.org/wiki/Diversity_index'>Diversity Index</a> or better known as the Blau's Index. In sociology, psychology and management studies the index is often known as Blau's Index, as it was introduced into the literature by the sociologist Peter Blau." +
+                    "We believe the discrepancy of diversity experienced in one’s surroundings versus the classroom - is an important factor in educational performance. Using the census data on population origin by census tracts across New York State, this map visualizes diversity as measured with the <a href='https://en.wikipedia.org/wiki/Diversity_index'>Diversity Index</a> or better known as the Blau's Index. In sociology, psychology and management studies the index is often known as Blau's Index, as it was introduced into the literature by the sociologist Peter Blau. <a href='http://kvn219.github.io/NYU-ADV-GIS/Diversity-Map/README.md'>Next lets look at the impact of the differences between school and communtiy diversity.</a>" +
                      "<div id='source'>" + "Source: American Community Survey 5-Year Data (09 - 13) </div> </p>"
                 );
             d3.select( this )
@@ -160,7 +168,7 @@ function ready( error, ny, data ) {
             d3.select( "h2" )
                 .html(
                     "<p id='text'><b>Hover</b> over a tract to get infomation. <b>Click</b> a tract to zoom in, <b>click on the same</b> tract to zoom out. For best quality, use full screen.</p>"+
-                    "<p id='text'> Over the past 30 years, an interesting phenomenon has taken shape in education systems in the United States: public schools have become increasingly racially segregated, despite rising levels of national diversity. While previous studies link greater diversity to better student performance, the focus remains largely on diversity in the classroom. Yet a large educational and psychological body of literature suggests that relational diversity large.</p>" +
+                    "<p id='text'> Over the past 30 years, an phenomenon has taken shape in education systems in the United States: public schools have become increasingly racially segregated, despite rising levels of national diversity. While previous studies link greater diversity to better student performance, the focus remains largely on diversity in the classroom.</p>" +
                     "<p id='sectionhead'>" + 'Census Tract' + '</p>' +
                     "<p id='sectionhead2'>" + 'County' + '</p>' +
                     "<p id='sectionhead2'>" + "Diversity Index: " + " " + "</p>" +
@@ -205,7 +213,7 @@ function ready( error, ny, data ) {
                     '<td>' + ' ' +
                     '</td>' + '</tr>' + '</table>' +
                     "<p id='text'>" + "<br/>" +
-                    "We believe the discrepancy of diversity experienced in one’s surroundings versus the classroom - is an important factor in educational performance. Using the census data on population origin by census tracts across New York State, this map visualizes diversity as measured with the <a href='https://en.wikipedia.org/wiki/Diversity_index'>Diversity Index</a> or better known as the Blau's Index. In sociology, psychology and management studies the index is often known as Blau's Index, as it was introduced into the literature by the sociologist Peter Blau." +
+                    "We believe the discrepancy of diversity experienced in one’s surroundings versus the classroom - is an important factor in educational performance. Using the census data on population origin by census tracts across New York State, this map visualizes diversity as measured with the <a href='https://en.wikipedia.org/wiki/Diversity_index'>Diversity Index</a> or better known as the Blau's Index. In sociology, psychology and management studies the index is often known as Blau's Index, as it was introduced into the literature by the sociologist Peter Blau. <a href='http://kvn219.github.io/NYU-ADV-GIS/Diversity-Map/README.md'>Next lets look at the impact of the differences between school and communtiy diversity.</a>" +
                      "<div id='source'>" + "Source: American Community Survey 5-Year Data (09 - 13) </div> </p>"
                 );
             d3.select( "#tooltip" )
@@ -223,7 +231,7 @@ function ready( error, ny, data ) {
                     }
                 } );
         } );
-
+// this helps us deal with changes in screen size
     g.append( "path" )
         .datum( topojson.mesh( ny, tracts, function ( a, b ) {
             return a !== b;
@@ -237,7 +245,7 @@ function ready( error, ny, data ) {
             return color( DiversityIndex[ d.id ] );
         } );
 }
-
+// function to control zoom
 function clicked( d ) {
     var x, y, k;
 
@@ -267,7 +275,7 @@ function clicked( d ) {
 
 d3.select( self.frameElement )
     .style( "height", height - 500 + "px" );
-
+// css to control svg image
 $( "svg" )
     .css( {
         top: 70,
