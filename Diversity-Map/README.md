@@ -6,7 +6,7 @@ Thanks for checking out the first visualization of a series of visualization bei
 At this time, we want to thank [Chris Wong]( https://twitter.com/chris_whong) for teaching an amazing class and helping Wagnerds use their passion for public service for data driven driven mapping.  Also, thanks to Mike Bostock for creating D3 and making amazing tutorials.
 
 # TODO
-- Second map with graduated symbols to visualize effect size for a particular school
+- Second map with graduated symbols to visualize effect size for a school
 - Makefile to reproduce topojson and census data downloads
 - Jupyter notebook showing how we analyzed the data
 - Final paper
