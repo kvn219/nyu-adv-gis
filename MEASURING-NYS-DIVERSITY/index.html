@@ -3,85 +3,76 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/style.css" />
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css">
+<link rel="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/css/tether.css">
+<script src="https://code.jquery.com/jquery-2.2.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
 <body>
-    <script src="https://code.jquery.com/jquery-2.2.1.js"></script>
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="http://d3js.org/topojson.v1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
-    <script src="http://d3js.org/topojson.v1.min.js"></script>
-    <script src="js/map.js"></script>
-    <div id="content">
-        <h1>Measuring Community Context to Understand Student Achievement in New York State</p></h1>
-        <div id="number ">
-            <h2>
-                <p id='text'>
-                    <p id='text'><b>Hover</b> over a tract to get infomation. <b>Click</b> a tract to zoom in, <b>click on the same</b> tract to zoom out. For best quality, use full screen.</p>
-                    Over the past 30 years, an phenomenon has taken shape in education systems in the United States: public schools have become increasingly racially segregated, despite rising levels of national diversity. While previous studies link greater diversity to better student performance, the focus remains largely on diversity in the classroom.<br/>
-             </p>
-                <p id='sectionhead'>Census Tract</p>
-                <p id='sectionhead2'>County</p>
-                <p id='sectionhead2'>Diversity Index: </p>
+<div id="content">
+    <div class="container">
+        <h1>Measuring Community Context</h1>
+        <footer class="blockquote-footer">Source: American Community Survey 5-Year Data  <cite title="Source Title">(09 - 13)</cite></footer>
+
+        <div class="row">
+            <div class="col-xs-4 col-md-2">
+                <div id="number">
+                    <p id='sectionhead'>Census Tract</p>
+                    <p id='sectionhead2'>County</p>
+                    <p id='sectionhead2'>Diversity Index: </p>
                     <table>
-                <tr>
-                     <th>Origin</th>
-                    <th>Non-Hispanic</th>
-                    <th>Hispanic</th>
-                </tr>
-                <tr>
-                    <td>White</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Black</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>American Indian</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Asian</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Pacific Islander</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Other</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Two or More Races</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                </table>
-                <p id='text'>
-                <br/>We believe the discrepancy of diversity experienced in one’s surroundings versus the classroom - is an important
-                factor in educational performance. Using the census data on population origin by census tracts across New York State, this map
-                visualizes diversity as measured with the <a href="https://en.wikipedia.org/wiki/Diversity_index ">Diversity Index</a> or
-                better known as the Blau's Index. In sociology, psychology and management studies the index is often known as Blau's Index,
-                as it was introduced into the literature by the sociologist Peter Blau.  <a href="https://github.com/kvn219/NYU-ADV-GIS/blob/gh-pages/Diversity-Map/README.md">Next lets look at the impact of the differences between school and communtiy diversity.</a>
-                <div id='source'>
-                    Source: American Community Survey 5-Year Data (09 - 13)
+                        <tr>
+                            <th>Origin</th>
+                            <th>Non-Hispanic</th>
+                            <th>Hispanic</th>
+                        </tr>
+                        <tr>
+                            <td>White</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Black</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>American Indian</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Asian</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Pacific Islander</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Two or More Races</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
                 </div>
-            </p>
-
-    </h2>
+            </div>
+            <div  id="map" class="col-xs-14 col-sm-8 col-md-10"></div>
         </div>
-
-        <br />
     </div>
-
+    </div>
 </body>
-
+<script src="js/map.js"></script>
 </html>

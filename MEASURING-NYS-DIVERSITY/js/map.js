@@ -8,13 +8,13 @@
 
 // set margin for graph
 var margin = {
-    top: 5,
-    right: 5,
-    bottom: 5,
-    left: 5
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0
 };
 // get user screen size
-var width = window.innerWidth + margin.left - margin.right - 300,
+var width = window.innerWidth + margin.left - margin.right,
     height = window.innerHeight + margin.top - margin.bottom,
     centered;
 // function to parse units
@@ -28,7 +28,7 @@ var color = d3.scale.quantize()
 var path = d3.geo.path()
     .projection( null );
 // append svg to body
-var svg = d3.select( "body" )
+var svg = d3.select( "#map" )
     .append( "svg" )
     .attr( "width", width )
     .attr( "height", height );
@@ -111,10 +111,8 @@ function ready( error, ny, data ) {
         } )
         .on( "click", clicked )
         .on( "mouseover", function ( d, i ) {
-            d3.select( "h2" )
+            d3.select( "#number" )
                 .html(
-                    "<p id='text'><b>Hover</b> over a tract to get infomation. <b>Click</b> a tract to zoom in, <b>click on the same</b> tract to zoom out. For best quality, use full screen.</p>" +
-                    "<p id='text'> Over the past 30 years, an phenomenon has taken shape in education systems in the United States: public schools have become increasingly racially segregated, despite rising levels of national diversity. While previous studies link greater diversity to better student performance, the focus remains largely on diversity in the classroom.</p>" +
                     "<p id='sectionhead'>" + TractByName[ d.id ] + '</p>' +
                     "<p id='sectionhead2'>" + CountyName[ d.id ] + '</p>' +
                     "<p id='sectionhead2'>" + "Diversity Index: " + formatIndex( DiversityIndex[ d.id ] ) + "</p>" +
@@ -157,9 +155,7 @@ function ready( error, ny, data ) {
                     '<td>' + 'Two or More Races ' + '</td>' +
                     '<td>' + formatPercent( NonHispanicTwoOrMoreRaces[ d.id ] ) + '</td>' +
                     '<td>' + formatPercent( HispanicTwoOrMoreRaces[ d.id ] ) + '</td>' + '</tr>' + '</table>' +
-                    "<p id='text'>" + "<br/>" +
-                    "We believe the discrepancy of diversity experienced in one’s surroundings versus the classroom - is an important factor in educational performance. Using the census data on population origin by census tracts across New York State, this map visualizes diversity as measured with the <a href='https://en.wikipedia.org/wiki/Diversity_index'>Diversity Index</a> or better known as the Blau's Index. In sociology, psychology and management studies the index is often known as Blau's Index, as it was introduced into the literature by the sociologist Peter Blau. <a href='https://github.com/kvn219/NYU-ADV-GIS/blob/gh-pages/Diversity-Map/README.md'>Next lets look at the impact of the differences between school and communtiy diversity.</a>" +
-                     "<div id='source'>" + "Source: American Community Survey 5-Year Data (09 - 13) </div> </p>"
+                    "<p id='text'>" + "<br/>" + "</p>"
                 );
             d3.select( this )
                 .style( "fill", "#6C7A89" );
@@ -167,9 +163,7 @@ function ready( error, ny, data ) {
         .on( "mouseout", function ( d, i ) {
             d3.select( "h2" )
                 .html(
-                    "<p id='text'><b>Hover</b> over a tract to get infomation. <b>Click</b> a tract to zoom in, <b>click on the same</b> tract to zoom out. For best quality, use full screen.</p>"+
-                    "<p id='text'> Over the past 30 years, an phenomenon has taken shape in education systems in the United States: public schools have become increasingly racially segregated, despite rising levels of national diversity. While previous studies link greater diversity to better student performance, the focus remains largely on diversity in the classroom.</p>" +
-                    "<p id='sectionhead'>" + 'Census Tract' + '</p>' +
+                       "<p id='sectionhead'>" + 'Census Tract' + '</p>' +
                     "<p id='sectionhead2'>" + 'County' + '</p>' +
                     "<p id='sectionhead2'>" + "Diversity Index: " + " " + "</p>" +
                     '<table>' + '<tr>' +
@@ -212,9 +206,7 @@ function ready( error, ny, data ) {
                     '<td>' + ' ' + '</td>' +
                     '<td>' + ' ' +
                     '</td>' + '</tr>' + '</table>' +
-                    "<p id='text'>" + "<br/>" +
-                    "We believe the discrepancy of diversity experienced in one’s surroundings versus the classroom - is an important factor in educational performance. Using the census data on population origin by census tracts across New York State, this map visualizes diversity as measured with the <a href='https://github.com/kvn219/NYU-ADV-GIS/blob/gh-pages/Diversity-Map/README.md'>Diversity Index</a> or better known as the Blau's Index. In sociology, psychology and management studies the index is often known as Blau's Index, as it was introduced into the literature by the sociologist Peter Blau. <a href='https://github.com/kvn219/NYU-ADV-GIS/blob/gh-pages/Diversity-Map/README.md'>Next lets look at the impact of the differences between school and communtiy diversity.</a>" +
-                     "<div id='source'>" + "Source: American Community Survey 5-Year Data (09 - 13) </div> </p>"
+                    "<p id='text'>" + "<br/>" + "</p>"
                 );
             d3.select( "#tooltip" )
                 .remove();
@@ -274,13 +266,21 @@ function clicked( d ) {
 }
 
 d3.select( self.frameElement )
-    .style( "height", height - 500 + "px" );
+    .style( "height", height);
+
 // css to control svg image
 $( "svg" )
     .css( {
-        top: 70,
-        left: 300,
-        right: 50,
-        bottom: 30,
         position: 'absolute'
     } );
+
+jQuery(function($){
+var windowWidth = $(window).width();
+
+$(window).resize(function() {
+    if(windowWidth != $(window).width()){
+    location.reload();
+    return;
+    }
+});
+});
